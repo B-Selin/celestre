@@ -1,18 +1,19 @@
 import { useState } from 'react'
-
+import SideBar from '../../components/SideBar/SideBar'
 import './App.css'
+import NavBar from '../../components/NavBar/Navbar'
 
-function App() {
+export default function App() {
 
 
   return (
     <>
+      <SideBar />
 
-      <p>
-        HOMEPAGE
-      </p>
+      <div className="content">
+        <h1>HOMEPAGE</h1>
+      </div>
     </>
   )
 }
 
-export default App
