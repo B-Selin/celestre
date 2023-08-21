@@ -14,7 +14,6 @@ app.use(express.json());
 // Configure static middleware
 // to serve from the production 'dist' folder
 app.use(express.static(path.join(__dirname, 'dist')));
-app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));

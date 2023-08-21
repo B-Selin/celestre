@@ -1,14 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import * as userService from '../../utilities/users-service';
 import logoImage from '../../assets/logo.jpg';
 import './SideBar.css'
 
-export default function SideBar() {
+export default function SideBar({ user, setUser }) {
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleSidebar() {
     setIsOpen(!isOpen);
+  }
+
+  function handleLogOut() {
+    userService.logOut();
+    setUser(null);
   }
 
   return (
@@ -27,7 +32,8 @@ export default function SideBar() {
             {/* Add more nav links here */}
           </div>
         </div>
-        <a href="#" className="nav_link">
+
+        <a href="#" className="nav_link" onClick={handleLogOut}>
           <i className="bx bx-log-out nav_icon"></i>
           <span className="nav_name">Sign Out</span>
         </a>
