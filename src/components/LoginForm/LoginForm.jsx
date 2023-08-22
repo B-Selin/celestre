@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import * as usersService from '../../utilities/users-service';
 
 export default function LoginForm({ setUser }) {
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
@@ -23,6 +26,7 @@ export default function LoginForm({ setUser }) {
       const user = await usersService.login(credentials);
       console.log(`${user} logged in`);
       setUser(user);
+      navigate('/'); // Navigate to the main page after successful login
     } catch {
       setError('Log In Failed - Try Again');
     }

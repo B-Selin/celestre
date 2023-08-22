@@ -35,7 +35,13 @@ export default function SideBar({ user, setUser }) {
               <i className="bx bx-grid-alt nav_icon"></i>
               <Link to="/search" className="nav_name">Search for More</Link>
             </a>
-            {/* Add more nav links here */}
+            {/* If there is a logged in user, show the dashboard link */}
+            {user && (
+              <a href="#" className="nav_link">
+                <i className="bx bx-user nav_icon"></i>
+                <Link to="/dashboard" className="nav_name">Dashboard</Link>
+              </a>
+            )}
           </div>
         </div>
         <a

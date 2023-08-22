@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpForm({ setUser }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,6 +26,7 @@ export default function SignUpForm({ setUser }) {
     try {
       const user = await signUp(formData);
       setUser(user);
+      navigate('/'); // Navigate to the main page after successful login
     } catch {
       setError('Sign Up Failed - Try Again');
     }
