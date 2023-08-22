@@ -3,7 +3,7 @@ import * as usersService from '../../utilities/users-service';
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
-    name: '',
+    email: '',
     password: ''
   });
   const [error, setError] = useState('');
@@ -21,6 +21,7 @@ export default function LoginForm({ setUser }) {
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
+      console.log(`${user} logged in`);
       setUser(user);
     } catch {
       setError('Log In Failed - Try Again');
@@ -31,8 +32,8 @@ export default function LoginForm({ setUser }) {
     <div>
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>name</label>
-          <input type="text" name="name" value={credentials.name} onChange={handleChange} required />
+          <label>Email</label>
+          <input type="email" name="email" value={credentials.email} onChange={handleChange} required />
           <label>Password</label>
           <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
           <button type="submit">LOG IN</button>

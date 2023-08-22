@@ -1,37 +1,49 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const User = require('../../models/user');
 
-const SALT_ROUNDS = 6;
+module.exports = {
+  create,
+  login,
+  checkToken
+};
 
-const userSchema = new Schema({
-  name: {type: String, required: true},
-  email: {
-    type: String,
-    unique: true,
-    trim: true,
-    lowercase: true,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
+function checkToken(req, res) {
+  console.log('req.user', req.user);
+  res.json(req.exp);
+}
+
+async function create(req, res) {
+  try {
+    // Add the user to the db
+    const user = await User.create(req.body);
+    const token = createJWT(user);
+    res.json(token);
+  } catch (err) {
+    res.status(400).json(err);
   }
-}, {
-  timestamps: true,
-  toJSON: {
-    transform: function(doc, ret) {
-      delete ret.password;
-      return ret;
-    }
+}
+
+async function login(req, res) {
+  try {
+    const user = await User.findOne({email: req.body.email});
+    if (!user) throw new Error();
+    const match = await bcrypt.compare(req.body.password, user.password);
+    if (!match) throw new Error();
+    const token = createJWT(user);
+    res.json(token);
+  } catch (err) {
+    res.status(400).json('Bad Credentials');
   }
-});
+}
 
-userSchema.pre('save', async function(next) {
-  // 'this' is the user document
-  if (!this.isModified('password')) return next();
-  // Replace the password with the computed hash
-  this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
-});
+/*--- Helper Functions --*/
 
-module.exports = mongoose.model('User', userSchema);
+function createJWT(user) {
+  return jwt.sign(
+    // data payload
+    { user },
+    process.env.SECRET,
+    { expiresIn: '24h' }
+  );
+}
