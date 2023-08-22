@@ -6,6 +6,7 @@ import { getUser } from '../../utilities/users-service';
 import { Route, Routes } from 'react-router-dom'; // Use BrowserRouter
 import SearchPage from '../SearchPage/SearchPage';
 import PicOfTheDayPage from '../PicOfTheDayPage/PicOfTheDayPage';
+import DisplayPage from '../DisplayPage/DisplayPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -20,6 +21,8 @@ export default function App() {
         {/* Render AuthPage only when logged out */}
         <Route path="/login" element={<AuthPage setUser={setUser} />} />
         <Route path="/search" element={<SearchPage />} />
+        {/* Route to DisplayPage and pass search results as state */}
+        <Route path="/display" element={<DisplayPage />} />
       </Routes>
     </main>
 

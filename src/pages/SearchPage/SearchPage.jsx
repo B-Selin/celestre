@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Navigate } from 'react-router-dom'; // Import Navigate for redirects
 
-function SearchPage() {
+export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
+  // Limit the search with the keywords instead of everything
   async function handleSearchSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
+      const response = await axios.get(`https://images-api.nasa.gov/search?keywords=${searchQuery}`);
       setSearchResults(response.data.collection.items);
+
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
+    // do not navigate to the DisplayPage in here
   }
 
   return (
@@ -27,9 +31,11 @@ function SearchPage() {
         />
         <button type="submit">Search</button>
       </form>
-
+      {/* Navigate to DisplayPage after fetching and setting search results */}
+      {searchResults.length > 0 && <Navigate to="/display" state={searchResults} />}
     </div>
   );
 }
 
-export default SearchPage;
+
+
