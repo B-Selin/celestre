@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { PicOfTheDay } from '../../utilities/PicOfTheDay';
+import './PicOfTheDayPage.css';
+
 
 export default function PicOfTheDayPage() {
   const [picture, setPicture] = useState(null);

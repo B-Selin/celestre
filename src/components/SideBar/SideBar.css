@@ -30,6 +30,13 @@ a {
   text-decoration: none
 }
 
+.content {
+  padding: 2rem;
+  margin-left: var(--nav-width);
+  /* Adjust for sidebar width */
+  transition: margin-left 0.3s ease;
+}
+
 .header {
   width: 100%;
   height: var(--header-height);
@@ -67,19 +74,22 @@ a {
 .l-navbar {
   position: fixed;
   top: 0;
-  left: -100%;
-  /* Start hidden */
-  width: 240px;
+  left: 0;
+  width: 8rem;
+  /* Initially collapsed width */
   height: 100%;
   background-color: #1f1f1f;
   padding: 0.5rem 1rem 0;
-  transition: left 0.3s ease;
+  transition: width 0.3s ease;
+  /* Use width for transition */
   z-index: 100;
 }
 
 .l-navbar.show {
-  left: 0;
-  /* Show when the class "show" is added */
+  width: 240px;
+  /* Expanded width when open */
+  transition: width 0.3s ease;
+  /* Use width for transition */
 }
 
 
@@ -109,7 +119,7 @@ a {
 }
 
 .nav_logo-icon {
-  width: 12rem;
+  width: 4rem;
   /* Adjust the width as needed */
   height: auto;
   /* Maintain aspect ratio */
@@ -162,36 +172,51 @@ a {
   height: 100vh
 }
 
-@media screen and (min-width: 768px) {
-  body {
-    margin: calc(var(--header-height) + 1rem) 0 0 0;
-    padding-left: calc(var(--nav-width) + 2rem)
-  }
-
-  .header {
-    height: calc(var(--header-height) + 1rem);
-    padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
-  }
-
-  .header_img {
-    width: 40px;
-    height: 40px
-  }
-
-  .header_img img {
-    width: 45px
-  }
-
+@media screen and (max-width: 768px) {
   .l-navbar {
-    left: 0;
-    padding: 1rem 1rem 0 0
+    width: 6rem;
+    /* Collapsed width for tablet */
   }
 
-  .show {
-    width: calc(var(--nav-width) + 156px)
+  .l-navbar.show {
+    width: 16rem;
+    /* Expanded width for tablet */
   }
 
-  .body-pd {
-    padding-left: calc(var(--nav-width) + 188px)
+  .content {
+    margin-left: var(--nav-width);
+    /* Adjust for sidebar width */
+  }
+
+  .nav_logo {
+    padding: 0.5rem 0;
+    /* Reduce top padding for logo on tablet */
+  }
+
+  .nav_link {
+    margin-bottom: 1rem;
+    /* Reduce margin-bottom for links on tablet */
+  }
+
+  .nav_link.active::before {
+    height: 24px;
+    /* Reduce height of active indicator on tablet */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .l-navbar {
+    width: 4rem;
+    /* Collapsed width for mobile */
+  }
+
+  .content {
+    margin-left: var(--nav-width);
+    /* Adjust for sidebar width */
+  }
+
+  .l-navbar.show {
+    width: 12rem;
+    /* Expanded width for mobile */
   }
 }

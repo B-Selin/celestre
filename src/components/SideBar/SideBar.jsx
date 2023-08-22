@@ -22,38 +22,69 @@ export default function SideBar({ user, setUser }) {
 
   }
 
+  // Close the sidebar when the screen size becomes smaller
+  const closeSidebarOnSmallScreen = () => {
+    if (window.innerWidth <= 1500 && isOpen) {
+      setIsOpen(false);
+    }
+  };
+
+  // Attach the event listener when the component mounts
+  useEffect(() => {
+    window.addEventListener('resize', closeSidebarOnSmallScreen);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', closeSidebarOnSmallScreen);
+    };
+  }, [isOpen]);
+
   return (
     <div className={`l-navbar ${isOpen ? 'show' : ''}`} id="nav-bar">
       <nav className="nav">
         <div>
-          <div className="nav_logo">
-            <img src={logoImage} alt="Logo" className="nav_logo-icon" />
-            <span className="logoImage"></span>
-          </div>
-          <div className="nav_list">
-            <a href="#" className="nav_link active">
-              <i className="bx bx-grid-alt nav_icon"></i>
-              <Link to="/search" className="nav_name">Search for More</Link>
-            </a>
-            {/* If there is a logged in user, show the dashboard link */}
-            {user && (
-              <a href="#" className="nav_link">
-                <i className="bx bx-user nav_icon"></i>
-                <Link to="/dashboard" className="nav_name">Dashboard</Link>
-              </a>
+          <div className="nav_logo" onClick={toggleSidebar}>
+            <img
+              src={logoImage}
+              alt="Logo"
+              className="nav_logo-icon"
+              onClick={toggleSidebar}
+            />
+            {isOpen && (
+              <div className="nav_logo-name">
+                {/* Display logo name when sidebar is open */}
+                Discover Cosmos
+              </div>
             )}
           </div>
+          {isOpen && (
+            <div className="nav_list">
+              <a href="#" className="nav_link active">
+                <i className="bx bx-grid-alt nav_icon"></i>
+                <Link to="/search" className="nav_name">Search for More</Link>
+              </a>
+              {/* If there is a logged in user, show the dashboard link */}
+              {user && (
+                <a href="#" className="nav_link">
+                  <i className="bx bx-user nav_icon"></i>
+                  <Link to="/dashboard" className="nav_name">Dashboard</Link>
+                </a>
+              )}
+            </div>
+          )}
         </div>
-        <a
-          href="#"
-          className="nav_link"
-          onClick={user ? handleLogOut : () => navigate('/login')} // Navigate to '/login'
-        >
-          <i className="bx bx-log-out nav_icon"></i>
-          <span className="nav_name">
-            {user ? 'Sign Out' : 'Log In'}
-          </span>
-        </a>
+        {isOpen && (
+          <a
+            href="#"
+            className="nav_link"
+            onClick={user ? handleLogOut : () => navigate('/login')} // Navigate to '/login'
+          >
+            <i className="bx bx-log-out nav_icon"></i>
+            <span className="nav_name">
+              {user ? 'Sign Out' : 'Log In'}
+            </span>
+          </a>
+        )}
       </nav>
     </div>
   );
