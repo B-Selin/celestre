@@ -6,17 +6,21 @@
 }
 
 .photo-card {
-  flex-basis: 350px;
+  flex-basis: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .photo-card img {
   object-fit: cover;
   max-width: 100%;
   height: auto;
-  vertical-align: middle;
-  border-radius: 5px;
+  max-height: 100%;
+  border-radius: 1rem;
 }
 
 .overlay {
