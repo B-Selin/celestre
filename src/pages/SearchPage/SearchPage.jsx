@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom'; // Import Navigate for redirects
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Limit the search with the keywords instead of everything
   async function handleSearchSubmit(event) {
@@ -17,11 +18,17 @@ export default function SearchPage() {
       console.error('Error fetching search results:', error);
     }
     // do not navigate to the DisplayPage in here
+
+    // Lets add a nice little error message in case the search results with nothing
+    if (searchResults.length === 0) {
+      setErrorMessage('These are not the droids you are looking for. Please try again with a different search term');
+    }
   }
 
   return (
     <div>
-      <h2>Search Page</h2>
+      <h2>Discover Cosmos</h2>
+      {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
@@ -31,8 +38,10 @@ export default function SearchPage() {
         />
         <button type="submit">Search</button>
       </form>
+
       {/* Navigate to DisplayPage after fetching and setting search results */}
       {searchResults.length > 0 && <Navigate to="/display" state={searchResults} />}
+
     </div>
   );
 }
