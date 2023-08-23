@@ -11,7 +11,7 @@ export default function SearchPage() {
   async function handleSearchSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.get(`https://images-api.nasa.gov/search?keywords=${searchQuery}`);
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
       setSearchResults(response.data.collection.items);
 
     } catch (error) {

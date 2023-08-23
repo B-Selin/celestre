@@ -126,7 +126,26 @@ a {
   /* Maintain aspect ratio */
   margin-right: 1rem;
   /* Add spacing between logo and text */
+
 }
+
+/* this next two css properties supposed to make the logo glow */
+.glow {
+  animation: glowing 5.5s infinite;
+}
+
+@keyframes glowing {
+
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(173, 216, 230, 0.8);
+  }
+
+  50% {
+    box-shadow: 0 0 15px rgba(173, 216, 230, 0.8), 0 0 20px rgba(173, 216, 230, 0.6);
+  }
+}
+
 
 .nav_logo-name {
   color: var(--white-color);

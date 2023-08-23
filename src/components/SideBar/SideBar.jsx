@@ -47,7 +47,7 @@ export default function SideBar({ user, setUser }) {
             <img
               src={logoImage}
               alt="Logo"
-              className="nav_logo-icon"
+              className="nav_logo-icon glow"
               onClick={toggleSidebar}
             />
             {isOpen && (
