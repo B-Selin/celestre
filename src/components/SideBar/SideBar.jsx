@@ -57,12 +57,29 @@ export default function SideBar({ user, setUser }) {
               </div>
             )}
           </div>
+          {/*leave a gap between logo and the links*/}
+
+
           {isOpen && (
             <div className="nav_list">
               <a href="#" className="nav_link active">
                 <i className="bx bx-grid-alt nav_icon"></i>
+                {/* Link to the Astronomy picture of the day page */}
+                <Link to="/" className="nav_name">Astronomy Picture <br /> of the Day</Link>
+              </a>
+
+              <a href="#" className="nav_link active">
+                <i className="bx bx-grid-alt nav_icon"></i>
+                {/* link to about us page */}
+                <Link to="/about" className="nav_name">About Celestre</Link>
+              </a>
+              <a href="#" className="nav_link active">
+                <i className="bx bx-grid-alt nav_icon"></i>
                 <Link to="/search" className="nav_name">Search for More</Link>
               </a>
+
+
+
               {/* If there is a logged in user, show the dashboard link */}
               {user && (
                 <a href="#" className="nav_link">

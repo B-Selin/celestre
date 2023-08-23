@@ -21,6 +21,11 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
+.main-content {
+  margin-left: var(--nav-width);
+  align-items: center;
+}
+
 .picture-container {
   background-color: #222225;
   padding: 20px;
