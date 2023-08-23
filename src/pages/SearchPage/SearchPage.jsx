@@ -21,7 +21,8 @@ export default function SearchPage() {
 
     // Lets add a nice little error message in case the search results with nothing
     if (searchResults.length === 0) {
-      setErrorMessage('These are not the droids you are looking for. Please try again with a different search term');
+      setErrorMessage("We sense a disturbance in the Force... or maybe just an error. How about trying a different keyword?");
+
     }
   }
 
@@ -34,7 +35,8 @@ export default function SearchPage() {
           type="text"
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
-          placeholder="Enter search query"
+          placeholder="Search the cosmos for galaxies, nebulae, and more...(i.e. 'Alderaan')"
+          style={{ width: '500px' }}
         />
         <button type="submit">Search</button>
       </form>
