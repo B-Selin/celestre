@@ -6,12 +6,15 @@ export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  // add a current page state for the searched more than 100 page
 
   // Limit the search with the keywords instead of everything
   async function handleSearchSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
+      // add page query parameter to search request
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}&page=${currentPage}`);
+
       setSearchResults(response.data.collection.items);
 
     } catch (error) {
@@ -42,7 +45,12 @@ export default function SearchPage() {
       </form>
 
       {/* Navigate to DisplayPage after fetching and setting search results */}
-      {searchResults.length > 0 && <Navigate to="/display" state={searchResults} />}
+      {searchResults.length > 0 && <Navigate
+        to="/display"
+        state={searchResults}
+      />}
+
+
 
     </div>
   );

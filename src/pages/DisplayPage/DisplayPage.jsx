@@ -4,10 +4,13 @@ import { CSSTransition } from 'react-transition-group';
 
 import './DisplayPage.css';
 
-export default function DisplayPage() {
+export default function DisplayPage(props) {
   const location = useLocation();
   const searchResults = location.state || [];
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+
 
   const openDetailsModal = (image) => {
     setSelectedImage(image);
@@ -15,6 +18,12 @@ export default function DisplayPage() {
 
   const closeDetailsModal = () => {
     setSelectedImage(null);
+  };
+
+
+  // Keeping track of next page to handle pagination and use the props to be able to run the load more
+  const loadNextPage = () => {
+    setCurrentPage(currentPage + 1);
   };
 
 
@@ -31,6 +40,16 @@ export default function DisplayPage() {
         ))
       ) : (
         <p>No results found.</p>
+      )}
+
+      {/* Add next and previous page buttons here */}
+      {searchResults.length > 0 && (
+        <div className="pagination">
+          {/* Add a "Load More" button to load the next page if there is a next page */}
+
+          <button onClick={loadNextPage}>Load More</button>
+
+        </div>
       )}
 
       {selectedImage && (

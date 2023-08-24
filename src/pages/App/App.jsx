@@ -7,7 +7,8 @@ import { Route, Routes } from 'react-router-dom'; // Use BrowserRouter
 import SearchPage from '../SearchPage/SearchPage';
 import PicOfTheDayPage from '../PicOfTheDayPage/PicOfTheDayPage';
 import DisplayPage from '../DisplayPage/DisplayPage';
-import AboutPage from '../AboutPage/AboutPAge';
+import AboutPage from '../AboutPage/AboutPage';
+import Dashboard from '../Dashboard/Dashboard';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/display" element={<DisplayPage />} />
           {/* route to AboutPage */}
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/dashboard" element={user ? <Dashboard user={user} /> : <AuthPage setUser={setUser} />} />
         </Routes>
       </div>
     </main>

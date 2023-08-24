@@ -62,18 +62,18 @@ export default function SideBar({ user, setUser }) {
 
           {isOpen && (
             <div className="nav_list">
-              <a href="#" className="nav_link active">
+              <a href="#" className="nav_link">
                 <i className="bx bx-grid-alt nav_icon"></i>
                 {/* Link to the Astronomy picture of the day page */}
                 <Link to="/" className="nav_name">Astronomy Picture <br /> of the Day</Link>
               </a>
 
-              <a href="#" className="nav_link active">
+              <a href="#" className="nav_link">
                 <i className="bx bx-grid-alt nav_icon"></i>
                 {/* link to about us page */}
                 <Link to="/about" className="nav_name">About Celestre</Link>
               </a>
-              <a href="#" className="nav_link active">
+              <a href="#" className="nav_link">
                 <i className="bx bx-grid-alt nav_icon"></i>
                 <Link to="/search" className="nav_name">Search for More</Link>
               </a>
