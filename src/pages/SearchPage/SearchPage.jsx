@@ -13,7 +13,7 @@ export default function SearchPage() {
     event.preventDefault();
     try {
       // add page query parameter to search request
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}&page=${currentPage}`);
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
 
       setSearchResults(response.data.collection.items);
 
