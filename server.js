@@ -13,10 +13,12 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 
+
 app.use(require('./config/checkToken'));
 const port = process.env.PORT || 3001;
 
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/photos', require('./routes/api/photos'));
 
 //Catch All
 app.get('/*', function(req, res) {
