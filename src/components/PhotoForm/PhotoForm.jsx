@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+
 export default function PhotoForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [keywords, setKeywords] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -21,7 +23,7 @@ export default function PhotoForm() {
     formData.append('photo', selectedFile);
 
     try {
-      const response = await axios.post('http://localhost:3001/api/upload', formData, {
+      const response = await axios.post('/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

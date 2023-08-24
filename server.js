@@ -3,11 +3,18 @@ const path = require('path');
 const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
-
+const cors = require('cors');
 
 const app = express();
 
 app.use(logger('dev'));
+
+// Enable CORS for specific domains
+app.use(cors({
+  origin: ['http://localhost:5173'], // Add your frontend domain here
+  methods: ['GET', 'POST'],
+  credentials: true // You might need this if you're dealing with cookies or authentication
+}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
