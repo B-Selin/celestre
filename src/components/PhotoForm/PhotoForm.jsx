@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-
 export default function PhotoForm() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [keywords, setKeywords] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
-
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -41,38 +39,11 @@ export default function PhotoForm() {
     <div>
       <h2>Upload Your Photo</h2>
       <form onSubmit={handleSubmit}>
-        <br></br>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-        <br></br>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-        <br></br>
-        <label htmlFor="keywords">Keywords (comma-separated):</label>
-        <input
-          type="text"
-          id="keywords"
-          value={keywords}
-          onChange={(event) => setKeywords(event.target.value)}
-        />
-        <br></br>
-        <label htmlFor="photo">Select a photo:</label>
-        <input
-          type="file"
-          id="photo"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        <br></br>
+        {/* ... Form input fields ... */}
+        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description"></textarea>
+        <input type="text" value={keywords} onChange={(e) => setKeywords(e.target.value)} placeholder="Keywords" />
+        <input type="file" accept="image/*" onChange={handleFileChange} />
         <button type="submit">Upload</button>
       </form>
     </div>

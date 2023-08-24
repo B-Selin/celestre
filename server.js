@@ -4,17 +4,12 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database');
 const cors = require('cors');
-
+const AWS = require('aws-sdk');
 const app = express();
 
 app.use(logger('dev'));
 
-// Enable CORS for specific domains
-app.use(cors({
-  origin: ['http://localhost:5173'], // Add your frontend domain here
-  methods: ['GET', 'POST'],
-  credentials: true // You might need this if you're dealing with cookies or authentication
-}));
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -22,9 +17,15 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(require('./config/checkToken'));
 const port = process.env.PORT || 3001;
 
+
+
+
+
+
+
+
 app.use('/api/users', require('./routes/api/users'));
 // get the photo routes 
-app.use('/api/photos', require('./routes/api/photos'));
 
 
 //Catch All

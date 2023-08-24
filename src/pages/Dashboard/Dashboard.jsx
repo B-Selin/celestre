@@ -14,7 +14,7 @@ export default function Dashboard({ user }) {
         <h2>Welcome {user.name} </h2>
         <p>Would you like to add photos?</p>
       </main>
-      <PhotoForm user={user} />
+
     </>
   )
 }

@@ -1,10 +1,7 @@
-
-const Photo = require('../../models/photo'); // Import your Photo model
-// import multer
 const multer = require('multer');
-const multerS3 = require('multer-s3')
-var AWS = require('aws-sdk')
-
+const multerS3 = require('multer-s3');
+const AWS = require('aws-sdk');
+const Photo = require('../../models/photo'); // Import your Photo model
 
 // Configure AWS SDK with your credentials and bucket information
 AWS.config.update({
@@ -22,50 +19,32 @@ const upload = multer({
     bucket: myBucket,
     acl: 'public-read',
     contentType: multerS3.AUTO_CONTENT_TYPE,
-    key: function(req, file, cb) {
-      cb(null, Date.now().toString())
-    }
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString());
+    },
   }),
   limits: {
     fileSize: 10 * 1024 * 1024, // Limit file size to 10MB
   },
 });
 
-
-// Controller method to handle photo uploads
 const uploadPhoto = async (req, res) => {
   try {
+    // Extract photo metadata, S3 URL, and user ID from req.body and req.file
     const { title, description, keywords } = req.body;
-    const { originalname, buffer } = req.file;
-
-    console.log('Received photo data:', { title, description, keywords, originalname });
-
-    // Generate a unique filename for the uploaded photo
-    const filename = `${Date.now()}-${originalname}`;
-
-    // Upload the photo to the S3 bucket
-    const params = {
-      Bucket: myBucket,
-      Key: filename,
-      Body: buffer,
-      ACL: 'public-read', // Make the photo accessible publicly
-    };
-
-    const data = await s3.upload(params).promise();
-
-    // Create a new Photo document in the database
+    const { location: s3Url } = req.file;
+    const uploadedBy = req.user._id; 
+    // Create a new Photo document
     const newPhoto = new Photo({
-      filename: data.Key,
-      keywords: keywords.split(',').map(keyword => keyword.trim()),
       title,
       description,
-      uploadedBy: req.user._id, // Make sure you have access to the user ID
+      keywords: keywords.split(',').map(keyword => keyword.trim()),
+      s3Url,
+      uploadedBy,
     });
 
-    console.log('Creating new photo:', newPhoto);
-
+    // Save the new photo document to the database
     await newPhoto.save();
-    console.log('Saved in the database:', newPhoto);
 
     res.status(201).json({ message: 'Photo uploaded successfully', photo: newPhoto });
   } catch (error) {
@@ -74,10 +53,7 @@ const uploadPhoto = async (req, res) => {
   }
 };
 
-// To avoid "Cannot access 'uploadPhoto' before initialization" move this to bottom?
-
 module.exports = {
-  upload, 
+  upload,
   uploadPhoto,
 };
-
