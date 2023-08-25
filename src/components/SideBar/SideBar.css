@@ -131,18 +131,18 @@ a {
 
 /* this next two css properties supposed to make the logo glow */
 .glow {
-  animation: glowing 5.5s infinite;
+  animation: glowing 3.5s infinite;
 }
 
 @keyframes glowing {
 
   0%,
   100% {
-    box-shadow: 0 0 10px rgba(173, 216, 230, 0.8);
+    box-shadow: 0 0 30px rgba(173, 216, 230, 0.8);
   }
 
-  50% {
-    box-shadow: 0 0 15px rgba(173, 216, 230, 0.8), 0 0 20px rgba(173, 216, 230, 0.6);
+  30% {
+    box-shadow: 0 0 30px rgba(173, 216, 230, 0.8), 0 0 20px rgba(173, 216, 230, 0.6);
   }
 }
 

@@ -11,3 +11,6 @@ export async function createStargazing(data){
 }
 
 
+export async function deleteStargazing(id){
+  return sendRequest(`${BASE_URL}/${id}`, 'DELETE');
+}

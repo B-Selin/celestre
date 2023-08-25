@@ -5,5 +5,7 @@ const isLoggedIn = require('../../config/ensureLoggedIn');
 
 router.post('/', isLoggedIn, stargazingCtrl.create);
 router.get('/', isLoggedIn, stargazingCtrl.index);
+// delete
+router.delete('/:id', isLoggedIn, stargazingCtrl.deleteOne);
 
 module.exports = router;

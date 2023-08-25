@@ -25,10 +25,37 @@ async function index(req, res) {
  }
 }
 
+async function deleteOne(req, res) {
+
+  const entry = await Stargazing.findById(req.params.id);
+
+  if (!entry) {
+    return res.status(404).json({ message: 'Entry not found' });
+  }
+
+  // Make sure user is authorized
+  if (entry.user.toString() !== req.user._id) {
+    return res.status(401).json({ message: 'Unauthorized' }); 
+  }
+
+  try {
+    await entry.remove();
+    res.json(entry);
+  } catch (err) {
+    const error = createError(500, err.message);
+    return next(error);
+  }
+
+}
+  
+
+
+
 
 module.exports = {
   create,
-  index
+  index,
+  deleteOne
 };
 
 

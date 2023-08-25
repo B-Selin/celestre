@@ -6,7 +6,6 @@ require('./config/database');
 const cors = require('cors');
 const AWS = require('aws-sdk');
 const app = express();
-const journalEntriesRouter = require('./routes/api/journalEntries');
 // const stargazingRouter = require('./routes/api/stargazing');
 
 app.use(logger('dev'));
@@ -25,8 +24,7 @@ const port = process.env.PORT || 3001;
 
 app.use('/api/users', require('./routes/api/users'));
 // get the photo routes 
-// get the journal routes
-// app.use('/api/journalEntries', journalEntriesRouter );
+
 
 app.use('/api/stargazings', require('./routes/api/stargazings'));
 
