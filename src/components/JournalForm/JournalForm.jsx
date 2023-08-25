@@ -6,6 +6,7 @@ export default function JournalForm({ onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('Submitting: ', title, content);
     onSubmit({ title, content });
     setTitle('');
     setContent('');

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 export default function StargazingForm({ handleStargazingSubmit }) {
   const initialFormData = {
     title: '',
+    date: '',
     observations: '',
   };
 
@@ -16,6 +17,7 @@ export default function StargazingForm({ handleStargazingSubmit }) {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(formData);
     handleStargazingSubmit(formData);
     setFormData(initialFormData);
   }
@@ -26,8 +28,9 @@ export default function StargazingForm({ handleStargazingSubmit }) {
       <form onSubmit={handleSubmit} className="stargazing-form">
         <h2>Stargazing Entry</h2>
         <label>
-          Title:
           <br />
+          Title:
+
           <input
             type="text"
             name="title"
@@ -36,8 +39,15 @@ export default function StargazingForm({ handleStargazingSubmit }) {
           />
         </label>
         <label>
+          Date:
+
+          <input type="date" name="date" value={formData.date} onChange={handleChange} />
+        </label>
+
+        <br />
+        <label>
           Observations:
-          <br />
+
           <textarea
             name="observations"
             value={formData.observations}

@@ -24,7 +24,7 @@ export default function Dashboard({ user }) {
   // Handle submit for new stargazing entry
   async function handleStargazingSubmit(entry) {
     try {
-      const newEntry = await createStargazing(entry);
+      const newEntry = await stargazingApi.createStargazing(entry);
       setStargazingEntries([...stargazingEntries, newEntry]);
     } catch (error) {
       console.error(error);
