@@ -28,7 +28,13 @@ export default function SignUpForm({ setUser }) {
       setUser(user);
       navigate('/'); // Navigate to the main page after successful login
     } catch {
-      setError('Sign Up Failed - Try Again');
+      if (formData.name) {
+        setError('Username or e-mail already taken');
+      } else if (formData.email) {
+        setError('Username or e-mail already taken');
+      } else {
+        setError('Sign Up Failed - Try Again');
+      }
     }
   };
 
