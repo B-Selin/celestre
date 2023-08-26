@@ -1,0 +1,26 @@
+/* Center the main content */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Add padding to the top of the page */
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* Add margin to the table */
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+/* Center the delete button within its table cell */
+.btn-delete {
+  display: flex;
+  justify-content: center;
+}
+
+/* Add margin to the top of the delete button */
+.btn-delete button {
+  margin-top: 0.2rem;
+}

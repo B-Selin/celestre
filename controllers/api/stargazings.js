@@ -4,6 +4,7 @@ const Stargazing = require('../../models/stargazing');
 
 async function create(req, res) {
   try {
+    console.log(req.user);
     const stargazing = await Stargazing.create({
       title: req.body.title,
       observations: req.body.observations,
@@ -18,6 +19,7 @@ async function create(req, res) {
 async function index(req, res) {
   try {
    const stargazings = await Stargazing.find().populate('user');
+   console.log(stargazings[0].user); 
    res.json(stargazings);
  } catch (err) {
   console.log(err)
@@ -26,24 +28,12 @@ async function index(req, res) {
 }
 
 async function deleteOne(req, res) {
-
-  const entry = await Stargazing.findById(req.params.id);
-
-  if (!entry) {
-    return res.status(404).json({ message: 'Entry not found' });
-  }
-
-  // Make sure user is authorized
-  if (entry.user.toString() !== req.user._id) {
-    return res.status(401).json({ message: 'Unauthorized' }); 
-  }
-
-  try {
-    await entry.remove();
-    res.json(entry);
+ try {
+  const stargazing = await Stargazing.findByIdAndDelete(req.params.id);
+  if(!stargazing) return res.status(404).json({error: 'Stargazing not found'});
+  res.json({message: 'Stargazing deleted'});
   } catch (err) {
-    const error = createError(500, err.message);
-    return next(error);
+    res.status(500).json(err);
   }
 
 }

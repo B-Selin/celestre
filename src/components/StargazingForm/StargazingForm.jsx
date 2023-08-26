@@ -26,35 +26,43 @@ export default function StargazingForm({ handleStargazingSubmit }) {
   return (
     <div className="stargazing-form-container">
       <form onSubmit={handleSubmit} className="stargazing-form">
-        <h2>Stargazing Entry</h2>
-        <label>
-          <br />
-          Title:
-
-          <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Date:
-
-          <input type="date" name="date" value={formData.date} onChange={handleChange} />
-        </label>
-
-        <br />
-        <label>
-          Observations:
-
-          <textarea
-            name="observations"
-            value={formData.observations}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Save Entry</button>
+        <h2>Share Your Observations</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td>Title:</td>
+              <td>
+                <input
+                  type="text"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Date:</td>
+              <td>
+                <input type="date" name="date" value={formData.date} onChange={handleChange} />
+              </td>
+            </tr>
+            <tr>
+              <td>Observations:</td>
+              <td>
+                <textarea
+                  name="observations"
+                  value={formData.observations}
+                  onChange={handleChange}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2" align="center">
+                <button type="submit">Save Entry</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </form>
     </div>
   );
