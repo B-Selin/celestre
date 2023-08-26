@@ -9,10 +9,13 @@ import './SideBar.css'
 export default function SideBar({ user, setUser }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate(); // Initialize useNavigate
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay
 
 
   function toggleSidebar() {
     setIsOpen(!isOpen);
+    setIsOverlayVisible(!isOverlayVisible);
+
   }
 
   function handleLogOut() {
@@ -40,56 +43,59 @@ export default function SideBar({ user, setUser }) {
   }, [isOpen]);
 
   return (
-    <div className={`l-navbar ${isOpen ? 'show' : ''}`} id="nav-bar">
-      <nav className="nav">
-        <div>
-          <div className="nav_logo" onClick={toggleSidebar}>
-            <img
-              src={logoImage}
-              alt="Logo"
-              className="nav_logo-icon glow"
-              onClick={toggleSidebar}
-            />
+    <div>
+      <div className={`overlay ${isOverlayVisible ? 'show' : ''}`} onMou={toggleSidebar}></div>
+      <div className={`l-navbar ${isOpen ? 'show' : ''}`} id="nav-bar">
+        <nav className="nav">
+          <div>
+            <div className="nav_logo" onClick={toggleSidebar}>
+              <img
+                src={logoImage}
+                alt="Logo"
+                className="nav_logo-icon glow"
+                onClick={toggleSidebar}
+              />
+              {isOpen && (
+                <div className="nav_logo-name">
+                  {/* Display logo name when sidebar is open */}
+                  Discover Cosmos
+                </div>
+              )}
+            </div>
+            {/*leave a gap between logo and the links*/}
+
+
             {isOpen && (
-              <div className="nav_logo-name">
-                {/* Display logo name when sidebar is open */}
-                Discover Cosmos
+              <div className="nav_list">
+
+                {/* Link to the Astronomy picture of the day page */}
+                <Link to="/" className="nav_link">Astronomy Picture <br /> of the Day</Link>
+                {/* link to about us page */}
+                <Link to="/about" className="nav_link">About Celestre</Link>
+                <Link to="/search" className="nav_link">Search for More</Link>
+
+
+                {/* If there is a logged in user, show the dashboard link */}
+                {user && (
+                  <Link to="/dashboard" className="nav_link">Dashboard</Link>
+                )}
               </div>
             )}
           </div>
-          {/*leave a gap between logo and the links*/}
-
-
           {isOpen && (
-            <div className="nav_list">
-
-              {/* Link to the Astronomy picture of the day page */}
-              <Link to="/" className="nav_link">Astronomy Picture <br /> of the Day</Link>
-              {/* link to about us page */}
-              <Link to="/about" className="nav_link">About Celestre</Link>
-              <Link to="/search" className="nav_link">Search for More</Link>
-
-
-              {/* If there is a logged in user, show the dashboard link */}
-              {user && (
-                <Link to="/dashboard" className="nav_link">Dashboard</Link>
-              )}
-            </div>
+            <a
+              href="#"
+              className="nav_link"
+              onClick={user ? handleLogOut : () => navigate('/login')} // Navigate to '/login'
+            >
+              <i className="bx bx-log-out nav_icon"></i>
+              <span className="nav_name">
+                {user ? 'Sign Out' : 'Log In'}
+              </span>
+            </a>
           )}
-        </div>
-        {isOpen && (
-          <a
-            href="#"
-            className="nav_link"
-            onClick={user ? handleLogOut : () => navigate('/login')} // Navigate to '/login'
-          >
-            <i className="bx bx-log-out nav_icon"></i>
-            <span className="nav_name">
-              {user ? 'Sign Out' : 'Log In'}
-            </span>
-          </a>
-        )}
-      </nav>
+        </nav>
+      </div>
     </div>
   );
 }

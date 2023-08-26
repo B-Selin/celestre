@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './StargazingForm.css';
 
 
 export default function StargazingForm({ handleStargazingSubmit }) {
@@ -24,46 +25,46 @@ export default function StargazingForm({ handleStargazingSubmit }) {
 
   // Render the form
   return (
-    <div className="stargazing-form-container">
-      <form onSubmit={handleSubmit} className="stargazing-form">
-        <h2>Share Your Observations</h2>
-        <table>
-          <tbody>
-            <tr>
-              <td>Title:</td>
-              <td>
-                <input
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Date:</td>
-              <td>
-                <input type="date" name="date" value={formData.date} onChange={handleChange} />
-              </td>
-            </tr>
-            <tr>
-              <td>Observations:</td>
-              <td>
-                <textarea
-                  name="observations"
-                  value={formData.observations}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" align="center">
-                <button type="submit">Save Entry</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+    <div className="form">
+      <h2 className="title">Share Your Observations</h2>
+
+      <div className="input-container ic1">
+        <input
+          className="input"
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+        <div className="cut"></div>
+        <label className="placeholder">Title</label>
+      </div>
+
+      <div className="input-container ic2">
+        <input
+          className="input"
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+        />
+        <div className="cut cut-short"></div>
+        <label className="placeholder">Date</label>
+      </div>
+
+      <div className="input-container ic2">
+        <textarea
+          className="input"
+          name="observations"
+          value={formData.observations}
+          onChange={handleChange}
+        />
+        <div className="cut"></div>
+        <label className="placeholder">Observations</label>
+      </div>
+
+      <button className="submit" type="submit">Save Entry</button>
+
     </div>
   );
 }
