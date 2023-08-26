@@ -50,46 +50,50 @@ export default function Dashboard({ user }) {
 
   return (
     <main>
-      <div className="container mt-4">
+      <div className="dashboard-container">
         <h2>Welcome {user.name}</h2>
 
 
         {/* Stargazing entry form */}
-        <StargazingForm handleStargazingSubmit={handleStargazingSubmit} />
+        <div className="entry-form">
+          <StargazingForm handleStargazingSubmit={handleStargazingSubmit} />
+        </div>
         {/* Display past stargazing entries */}
-        <h3 className="mt-4">These are the observations from other astronomy enthusiasts</h3>
+        <div className="entry-list">
+          <h3 className="mt-4">These are the observations from other astronomy enthusiasts</h3>
 
 
-        <table className="table table-bordered table-hover mt-2">
-          <thead className="thead-light">
-            <tr>
-              <th>Date</th>
-              <th>Observer</th>
-              <th>Title</th>
-              <th>Observations</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {stargazingEntries.map(entry => (
-              <tr key={entry._id}>
-                <td>{new Date(entry.date).toLocaleDateString()}</td>
-                <td>{entry.user.name}</td>
-                <td>{entry.title}</td>
-                <td>{entry.observations}</td>
-                {/* add delete button that only shows when logged in user matches entry user */}
-                <td>
-                  {entry.user._id === user._id && (
-                    <button className="btn btn-sm btn-danger" onClick={() => handleStargazingDelete(entry._id)}>
-                      Delete
-                    </button>
-                  )}
-                </td>
+          <table className="table table-bordered table-hover mt-2">
+            <thead className="thead-light">
+              <tr>
+                <th>Date</th>
+                <th>Observer</th>
+                <th>Title</th>
+                <th>Observations</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {stargazingEntries.map(entry => (
+                <tr key={entry._id}>
+                  <td>{new Date(entry.date).toLocaleDateString()}</td>
+                  <td>{entry.user.name}</td>
+                  <td>{entry.title}</td>
+                  <td>{entry.observations}</td>
+                  {/* add delete button that only shows when logged in user matches entry user */}
+                  <td>
+                    {entry.user._id === user._id && (
+                      <button className="btn btn-sm btn-danger" onClick={() => handleStargazingDelete(entry._id)}>
+                        Delete
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </main >
   );
