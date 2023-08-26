@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom'; // Import Navigate for redirects
+import './SearchPage.css';
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -37,16 +38,15 @@ export default function SearchPage() {
   }
 
   return (
-    <div>
+    <div className='search-page'>
       <h2>Discover Cosmos</h2>
       {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={handleSearchSubmit}>
-        <input
+        <input className='search-form'
           type="text"
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
           placeholder="Search the cosmos for galaxies, nebulae, and more...(i.e. 'Alderaan')"
-          style={{ width: '500px' }}
         />
         <button type="submit">Search</button>
       </form>

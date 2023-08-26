@@ -95,11 +95,7 @@
   left: 0;
 }
 
-/* SideBar.css */
 
-/* ... Existing CSS styles ... */
-
-/* Overlay to fade the rest of the screen when sidebar is open */
 .overlay {
   position: fixed;
   top: 0;
@@ -115,7 +111,6 @@
   display: block;
 }
 
-/* Additional media queries as needed */
 
 
 /* this next two css properties supposed to make the logo glow */
@@ -141,10 +136,10 @@
   align-items: center;
   justify-content: center;
   color: var(--first-color-light);
-  margin-top: auto;
   padding: 1rem 0;
   cursor: pointer;
   transition: .3s;
+
 }
 
 .btn-signout:hover {
@@ -152,13 +147,19 @@
 }
 
 /* Media queries for responsive design */
+
+
 @media screen and (max-width: 768px) {
   .l-navbar {
     width: 6rem;
+
   }
 
   .l-navbar.show {
-    width: 16rem;
+    width: 9rem;
+    font-size: smaller;
+    min-height: fit-content;
+
   }
 
 }
@@ -169,7 +170,10 @@
   }
 
   .l-navbar.show {
-    width: 12rem;
+    margin-left: auto;
+    width: 7rem;
+    min-height: fit-content;
+    font-size: x-small;
   }
 
 

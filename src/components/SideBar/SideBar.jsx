@@ -73,21 +73,20 @@ export default function SideBar({ user, setUser }) {
                 {user && (
                   <Link to="/dashboard" className="nav_link">Dashboard</Link>
                 )}
+
+                <a
+                  href="#"
+                  className="btn-signout"
+                  onClick={user ? handleLogOut : () => navigate('/login')} // Navigate to '/login'
+                >
+                  <i className="bx bx-log-out nav_icon"></i>
+                  <span className="nav_name">
+                    {user ? 'Sign Out' : 'Log In'}
+                  </span>
+                </a>
               </div>
             )}
           </div>
-          {isOpen && (
-            <a
-              href="#"
-              className="nav_link"
-              onClick={user ? handleLogOut : () => navigate('/login')} // Navigate to '/login'
-            >
-              <i className="bx bx-log-out nav_icon"></i>
-              <span className="nav_name">
-                {user ? 'Sign Out' : 'Log In'}
-              </span>
-            </a>
-          )}
         </nav>
       </div>
     </div>

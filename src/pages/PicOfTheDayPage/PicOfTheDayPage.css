@@ -1,6 +1,10 @@
 .content {
   padding: 2rem;
+  width: calc(90% - var(--sidebar-width));
+  margin-left: var(--sidebar-width);
 }
+
+
 
 .picture-container {
   background-color: #222225;
@@ -26,10 +30,15 @@
   margin-top: 1rem;
 }
 
+/* Sidebar width variable */
+:root {
+  --sidebar-width: 12vmin;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .h1 {
-    font-size: 2em;
+  .content {
+    font-size: smaller;
   }
 
   .picture-container {
@@ -42,5 +51,23 @@
 
   #nasa-img {
     max-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    font-size: x-small;
+  }
+
+  .picture-container {
+    margin-top: 0.5rem;
+  }
+
+  .picture-container h2 {
+    font-size: 1.2rem;
+  }
+
+  #nasa-img {
+    max-height: 200px;
   }
 }

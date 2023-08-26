@@ -1,0 +1,12 @@
+.auth-page {
+
+  width: calc(90% - var(--sidebar-width));
+  margin-left: var(--sidebar-width);
+}
+
+
+
+/* Sidebar width variable */
+:root {
+  --sidebar-width: 12vmin;
+}

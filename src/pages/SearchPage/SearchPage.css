@@ -1,0 +1,15 @@
+.search-page {
+
+  width: calc(90% - var(--sidebar-width));
+  margin-left: var(--sidebar-width);
+}
+
+.search-form {
+  width: 60vmin;
+}
+
+
+/* Sidebar width variable */
+:root {
+  --sidebar-width: 12vmin;
+}
