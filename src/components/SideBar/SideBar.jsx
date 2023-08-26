@@ -44,29 +44,23 @@ export default function SideBar({ user, setUser }) {
 
   return (
     <div>
-      <div className={`overlay ${isOverlayVisible ? 'show' : ''}`} onMou={toggleSidebar}></div>
+      <div className={`overlay ${isOverlayVisible ? 'show' : ''}`} onClick={toggleSidebar}></div>
       <div className={`l-navbar ${isOpen ? 'show' : ''}`} id="nav-bar">
         <nav className="nav">
           <div>
-            <div className="nav_logo" onClick={toggleSidebar}>
+            <div className="nav_logo" >
               <img
                 src={logoImage}
                 alt="Logo"
                 className="nav_logo-icon glow"
                 onClick={toggleSidebar}
               />
-              {isOpen && (
-                <div className="nav_logo-name">
-                  {/* Display logo name when sidebar is open */}
-                  Discover Cosmos
-                </div>
-              )}
             </div>
             {/*leave a gap between logo and the links*/}
 
 
             {isOpen && (
-              <div className="nav_list">
+              <div className="nav_list" onClick={toggleSidebar}>
 
                 {/* Link to the Astronomy picture of the day page */}
                 <Link to="/" className="nav_link">Astronomy Picture <br /> of the Day</Link>

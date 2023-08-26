@@ -1,0 +1,47 @@
+.about-container {
+  max-width: 90%;
+  margin: 5vmin auto;
+  padding: 2vmin;
+}
+
+.about-content {
+  line-height: 1.6;
+}
+
+@media (min-width: 1024px) {
+  .about-container {
+    width: calc(90% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+    margin-right: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .about-container {
+    width: 90%;
+    margin-left: var(--sidebar-width);
+    margin-right: 2vmin;
+    padding: 2vmin;
+  }
+}
+
+@media (max-width: 400px) {
+  .about-container {
+    width: 80%;
+    margin-left: var(--sidebar-width);
+    margin-right: 1vmin;
+    padding: 2vmin;
+  }
+
+  .about-content {
+    line-height: 1;
+  }
+}
+
+
+
+/* Sidebar width variable */
+:root {
+  --sidebar-width: 12vmin;
+}

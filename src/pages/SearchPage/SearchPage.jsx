@@ -11,20 +11,27 @@ export default function SearchPage() {
   // Limit the search with the keywords instead of everything
   async function handleSearchSubmit(event) {
     event.preventDefault();
+    console.log('Trying to fetch search results...'); // Debugging line
+
     try {
-      // add page query parameter to search request
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
-
-      setSearchResults(response.data.collection.items);
-
+      if (searchQuery.length < 5) {
+        setErrorMessage('Search query must be at least 5 characters long.');
+        setSearchResults([]); // Clear existing search results
+      } else {
+        const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
+        console.log('API Response:', response.data.collection.items);
+        setSearchResults(response.data.collection.items);
+      }
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
-    // do not navigate to the DisplayPage in here
+
+    // Debugging line
+    console.log('Search results length:', searchResults.length);
 
     // Lets add a nice little error message in case the search results with nothing
     if (searchResults.length === 0) {
-      setErrorMessage("We sense a disturbance in the Force... or maybe just an error. How about trying a different keyword?");
+      setErrorMessage(`It doesn't look like ${searchQuery} exist in the universe... or maybe just a typo. How about trying a different keyword?`);
 
     }
   }

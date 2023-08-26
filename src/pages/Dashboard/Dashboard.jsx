@@ -14,8 +14,7 @@ export default function Dashboard({ user }) {
     async function fetchEntries() {
       try {
         const entries = await stargazingApi.fetchStargazing();
-        console.log(entries)
-        console.log(entries[0].user);
+
         setStargazingEntries(entries);
       } catch (error) {
         console.error('Error fetching stargazing entries:', error);
