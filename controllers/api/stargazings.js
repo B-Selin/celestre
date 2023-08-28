@@ -6,10 +6,15 @@ async function create(req, res) {
   try {
     // Create a new stargazing document from request body
     // and current logged in user
-    const stargazing = await Stargazing.create({  
+    const stargazing = await Stargazing.create({
+      date: req.body.date,  
       title: req.body.title,
       observations: req.body.observations,
-      user: req.user._id 
+      user: {
+        // Get logged in user from request
+        _id: req.user._id,
+        name: req.user.name
+      } 
     });
 
     // Send back the new stargazing document
@@ -26,7 +31,7 @@ async function index(req, res) {
   try {
     // Find all stargazing documents and populate 
     // the 'user' field
-    const stargazings = await Stargazing.find().populate('user');
+    const stargazings = await Stargazing.find().populate('user').sort({date: -1});
 
     // Send back stargazing documents  
     res.json(stargazings);

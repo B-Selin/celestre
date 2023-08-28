@@ -39,8 +39,12 @@ export default function Dashboard({ user }) {
       const entryWithUser = { ...entry, user: user._id };
       // Create entry in API
       const newEntry = await stargazingApi.createStargazing(entryWithUser);
-      // Update state with new entry 
-      setStargazingEntries([newEntry, ...stargazingEntries]);
+
+      // Fetch the updated list of entries from the API
+      const updatedEntries = await stargazingApi.fetchStargazing();
+
+      // Update state with the fetched updated entries 
+      setStargazingEntries(updatedEntries);
       console.log('New entry created:', newEntry);
     } catch (error) {
       console.error(error);
