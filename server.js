@@ -23,7 +23,6 @@ const port = process.env.PORT || 3001;
 
 
 app.use('/api/users', require('./routes/api/users'));
-// get the photo routes 
 
 
 app.use('/api/stargazings', require('./routes/api/stargazings'));

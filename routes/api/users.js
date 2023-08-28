@@ -1,4 +1,5 @@
 // Require express router  
+const express = require('express');
 const router = express.Router();
 
 // Require user controller functions

@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 // Import user service methods 
 import * as usersService from '../../utilities/users-service';
 
+// Import the CSS
+import './LoginForm.css';
+
 
 export default function LoginForm({ setUser }) {
 
@@ -50,7 +53,7 @@ export default function LoginForm({ setUser }) {
   // Render form
   return (
     <div>
-      <div className="form-container">
+      <div className="login-form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="email" name="email" value={credentials.email} onChange={handleChange} required />

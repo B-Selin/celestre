@@ -7,6 +7,9 @@ import { signUp } from '../../utilities/users-service';
 // Import useNavigate hook for navigation
 import { useNavigate } from 'react-router-dom';
 
+// Import the CSS
+import '../LoginForm/LoginForm.css';
+
 export default function SignUpForm({ setUser }) {
   // Initialize useNavigate hook
   const navigate = useNavigate();
@@ -52,7 +55,7 @@ export default function SignUpForm({ setUser }) {
 
   return (
     <div>
-      <div className="form-container">
+      <div className="login-form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Name</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
@@ -68,4 +71,5 @@ export default function SignUpForm({ setUser }) {
       <p className="error-message">&nbsp;{error}</p>
     </div>
   );
+
 }

@@ -1,5 +1,7 @@
 // Require express router
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+
 
 // Require stargazing controller functions
 const stargazingCtrl = require('../../controllers/api/stargazings');  
