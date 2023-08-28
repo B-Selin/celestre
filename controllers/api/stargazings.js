@@ -1,51 +1,61 @@
-const Stargazing = require('../../models/stargazing');
+// Models
+const Stargazing = require('../../models/stargazing'); 
 
-
-
+// POST /api/stargazings - Create a new stargazing entry
 async function create(req, res) {
   try {
-    console.log(req.user);
-    const stargazing = await Stargazing.create({
+    // Create a new stargazing document from request body
+    // and current logged in user
+    const stargazing = await Stargazing.create({  
       title: req.body.title,
       observations: req.body.observations,
-      user: req.user._id
+      user: req.user._id 
     });
+
+    // Send back the new stargazing document
     res.status(201).json(stargazing);
+    
   } catch(err) {
-    res.status(400).json(err);
+    // Send back error response
+    res.status(400).json(err); 
   }
 }
 
+// GET /api/stargazings - Get all stargazing entries
 async function index(req, res) {
   try {
-   const stargazings = await Stargazing.find().populate('user');
-   console.log(stargazings[0].user); 
-   res.json(stargazings);
- } catch (err) {
-  console.log(err)
-  res.status(500).json(err);
- }
-}
+    // Find all stargazing documents and populate 
+    // the 'user' field
+    const stargazings = await Stargazing.find().populate('user');
 
-async function deleteOne(req, res) {
- try {
-  const stargazing = await Stargazing.findByIdAndDelete(req.params.id);
-  if(!stargazing) return res.status(404).json({error: 'Stargazing not found'});
-  res.json({message: 'Stargazing deleted'});
-  } catch (err) {
+    // Send back stargazing documents  
+    res.json(stargazings);
+    
+  } catch(err) {
+    console.log(err);
     res.status(500).json(err);
   }
-
 }
-  
 
+// DELETE /api/stargazings/:id - Delete a stargazing entry
+async function deleteOne(req, res) {
+  try {
+    // Find stargazing document by id and delete
+    const stargazing = await Stargazing.findByIdAndDelete(req.params.id);
 
+    // Send 404 if no document found
+    if(!stargazing) return res.status(404).json({error: 'Stargazing not found'});
 
+    // Send back success response
+    res.json({message: 'Stargazing deleted'});
+    
+  } catch(err) {
+    res.status(500).json(err);
+  }
+}
 
 module.exports = {
   create,
-  index,
+  index, 
   deleteOne
 };
-
-

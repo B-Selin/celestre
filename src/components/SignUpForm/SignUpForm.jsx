@@ -1,9 +1,16 @@
+// Import React hooks for state management
 import React, { useState } from 'react';
+
+// Import user service signUp method 
 import { signUp } from '../../utilities/users-service';
+
+// Import useNavigate hook for navigation
 import { useNavigate } from 'react-router-dom';
 
 export default function SignUpForm({ setUser }) {
+  // Initialize useNavigate hook
   const navigate = useNavigate();
+  // State for form input data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,6 +19,7 @@ export default function SignUpForm({ setUser }) {
   });
   const [error, setError] = useState('');
 
+  // Update formData state on input changes
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((prevData) => ({
@@ -21,6 +29,7 @@ export default function SignUpForm({ setUser }) {
     setError('');
   };
 
+  // Handle form submission
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
@@ -38,6 +47,7 @@ export default function SignUpForm({ setUser }) {
     }
   };
 
+  // Disable submit if passwords don't match
   const disable = formData.password !== formData.confirm;
 
   return (

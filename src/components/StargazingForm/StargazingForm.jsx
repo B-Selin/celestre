@@ -1,25 +1,33 @@
+// Import React hooks for state management
 import React, { useState } from 'react';
+
+// Import CSS module 
 import './StargazingForm.css';
 
-
 export default function StargazingForm({ handleStargazingSubmit }) {
+  // Initialize form data state
   const initialFormData = {
     title: '',
     date: '',
     observations: '',
   };
 
+  // State to store form data
   const [formData, setFormData] = useState(initialFormData);
 
+  // Update form data state on input changes
   function handleChange(evt) {
     const newFormData = { ...formData, [evt.target.name]: evt.target.value };
     setFormData(newFormData);
   }
 
+  // Handle form submission
   async function handleSubmit(evt) {
     evt.preventDefault();
-    console.log(formData);
+
+    // Pass formData to parent component
     handleStargazingSubmit(formData);
+    // Reset form
     setFormData(initialFormData);
   }
 

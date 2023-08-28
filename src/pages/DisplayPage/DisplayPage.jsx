@@ -1,30 +1,36 @@
+// Import React hooks for state management
 import React, { useState } from 'react';
+
+// Import hook to get route location state
 import { useLocation } from 'react-router-dom';
+
+// Import CSS transition component
 import { CSSTransition } from 'react-transition-group';
 
+// Import component CSS 
 import './DisplayPage.css';
 
 export default function DisplayPage(props) {
+  // Get search results from location state
   const location = useLocation();
   const searchResults = location.state || [];
+  // State to store selected image for modal
   const [selectedImage, setSelectedImage] = useState(null);
+  // State to track current page for pagination
   const [currentPage, setCurrentPage] = useState(1);
 
 
-
+  // Open modal with selected image
   const openDetailsModal = (image) => {
     setSelectedImage(image);
   };
 
+  // Close modal by resetting state
   const closeDetailsModal = () => {
     setSelectedImage(null);
   };
 
 
-  // Keeping track of next page to handle pagination and use the props to be able to run the load more
-  const loadNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
 
 
   return (
@@ -40,16 +46,6 @@ export default function DisplayPage(props) {
         ))
       ) : (
         <p>No results found.</p>
-      )}
-
-      {/* Add next and previous page buttons here */}
-      {searchResults.length > 0 && (
-        <div className="pagination">
-          {/* Add a "Load More" button to load the next page if there is a next page */}
-
-          <button onClick={loadNextPage}>Load More</button>
-
-        </div>
       )}
 
       {selectedImage && (

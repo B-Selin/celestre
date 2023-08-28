@@ -1,28 +1,41 @@
+// Import React and hooks for state management
 import React from 'react';
 import { useState, useEffect } from 'react';
+
+// Import React Router utilities
 import { Link, useNavigate } from 'react-router-dom';
+
+// Import user service methods
 import * as userService from '../../utilities/users-service';
 
+// Import logo image asset
 import logoImage from '../../assets/logo.jpg';
+
+// Import CSS module
 import './SideBar.css'
 
 export default function SideBar({ user, setUser }) {
+
+  // State to track sidebar open/close
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate(); // Initialize useNavigate
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false); // State for overlay
 
+  // Initialize useNavigate hook
+  const navigate = useNavigate();
 
+  // State to show overlay when sidebar open
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+
+  // Toggle sidebar and overlay visibility
   function toggleSidebar() {
     setIsOpen(!isOpen);
     setIsOverlayVisible(!isOverlayVisible);
-
   }
 
+  // Log out user and navigate to home
   function handleLogOut() {
     userService.logOut();
     setUser(null);
-    navigate('/'); // Navigate to home page after logout
-
+    navigate('/');
   }
 
   // Close the sidebar when the screen size becomes smaller

@@ -1,34 +1,39 @@
+// Import React hooks for state management
 import React, { useState } from 'react';
+
+// Import axios for API requests
 import axios from 'axios';
-import { Navigate } from 'react-router-dom'; // Import Navigate for redirects
+
+// Import Navigate component for redirects
+import { Navigate } from 'react-router-dom';
+
+// Import component CSS
 import './SearchPage.css';
 
 export default function SearchPage() {
+  // State to store user's search query
   const [searchQuery, setSearchQuery] = useState('');
+  // State to store search results
   const [searchResults, setSearchResults] = useState([]);
+  // State for any error messages
   const [errorMessage, setErrorMessage] = useState('');
-  // add a current page state for the searched more than 100 page
 
-  // Limit the search with the keywords instead of everything
   async function handleSearchSubmit(event) {
     event.preventDefault();
-    console.log('Trying to fetch search results...'); // Debugging line
+    // Log statement for debugging
+    console.log('Trying to fetch search results...');
 
     try {
-      if (searchQuery.length < 5) {
-        setErrorMessage('Search query must be at least 5 characters long.');
-        setSearchResults([]); // Clear existing search results
-      } else {
-        const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
-        console.log('API Response:', response.data.collection.items);
-        setSearchResults(response.data.collection.items);
-      }
+
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
+      console.log('API Response:', response.data.collection.items);
+      // Update search results state
+      setSearchResults(response.data.collection.items);
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
 
-    // Debugging line
-    console.log('Search results length:', searchResults.length);
+
 
     // Lets add a nice little error message in case the search results with nothing
     if (searchResults.length === 0) {

@@ -1,6 +1,13 @@
+// Import React hooks for state and effects
 import React, { useState, useEffect } from 'react';
+
+// Import child components  
 import StargazingForm from '../../components/StargazingForm/StargazingForm';
+
+// Import API utility functions
 import * as stargazingApi from '../../utilities/stargazing-api';
+
+// Import component CSS
 import './Dashboard.css';
 
 export default function Dashboard({ user }) {
@@ -8,9 +15,9 @@ export default function Dashboard({ user }) {
   // State for stargazing entries
   const [stargazingEntries, setStargazingEntries] = useState([]);
 
-  // Fetch stargazing entries on mount
+  // Fetch entries on initial render
   useEffect(() => {
-    //  fetch entries with user ids
+    // Async function to get entries from API
     async function fetchEntries() {
       try {
         const entries = await stargazingApi.fetchStargazing();
@@ -28,8 +35,11 @@ export default function Dashboard({ user }) {
   // Handle submit for new stargazing entry
   async function handleStargazingSubmit(entry) {
     try {
+      // Add user ID to entry
       const entryWithUser = { ...entry, user: user._id };
+      // Create entry in API
       const newEntry = await stargazingApi.createStargazing(entryWithUser);
+      // Update state with new entry 
       setStargazingEntries([newEntry, ...stargazingEntries]);
       console.log('New entry created:', newEntry);
     } catch (error) {
@@ -37,16 +47,19 @@ export default function Dashboard({ user }) {
     }
   }
 
+  // Handle entry deletion
   async function handleStargazingDelete(id) {
     try {
+      // Delete entry in API
       await stargazingApi.deleteStargazing(id);
+      // Update state by filtering out deleted entry
       setStargazingEntries(stargazingEntries.filter(entry => entry._id !== id));
     } catch (error) {
       console.error(error);
     }
   }
 
-
+  // Render UI 
   return (
     <main>
       <div className="dashboard-container">

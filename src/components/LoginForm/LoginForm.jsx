@@ -1,37 +1,53 @@
+// Import React hooks for state and navigation
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Import user service methods 
 import * as usersService from '../../utilities/users-service';
 
+
 export default function LoginForm({ setUser }) {
+
+  // Initialize useNavigate hook
   const navigate = useNavigate();
+
+  // State for form credentials 
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
   });
+
+  // State for any error messages
   const [error, setError] = useState('');
 
+  // Update credentials state on input change
   function handleChange(evt) {
-    setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
+    setCredentials({
+      ...credentials,
+      [evt.target.name]: evt.target.value
+    });
     setError('');
   }
 
+  // Handle form submission
   async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
+    // Prevent default form submit
     evt.preventDefault();
+
     try {
-      // The promise returned by the signUp service method 
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
+      // Call login service and set user state
       const user = await usersService.login(credentials);
-      console.log(`${user} logged in`);
       setUser(user);
-      navigate('/'); // Navigate to the main page after successful login
+
+      // Redirect to main page on success 
+      navigate('/');
+
     } catch {
+      // Show error message on failure
       setError('Log In Failed - Try Again');
     }
   }
-
+  // Render form
   return (
     <div>
       <div className="form-container">
