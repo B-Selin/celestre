@@ -33,7 +33,7 @@ export default function StargazingForm({ handleStargazingSubmit }) {
 
   // Render the form
   return (
-    <div className="form">
+    <form className="form" onSubmit={handleSubmit}>
       <h2 className="title">Share Your Observations</h2>
 
       <div className="input-container ic1">
@@ -72,7 +72,6 @@ export default function StargazingForm({ handleStargazingSubmit }) {
       </div>
 
       <button className="submit" type="submit">Save Entry</button>
-
-    </div>
+    </form>
   );
 }
