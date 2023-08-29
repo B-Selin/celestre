@@ -24,9 +24,12 @@ Celestre is a web application designed for astronomy enthusiasts to connect Nasa
 - **Deployment**: 
 [![Heroku](https://img.shields.io/badge/Heroku-430098?logo=heroku&logoColor=white&style=for-the-badge)](https://www.heroku.com/)
 
-- **OTHER**:
+- **API**:
 [![NASA API](https://img.shields.io/badge/NASA-F9D0C4?logo=nasa&logoColor=white&style=for-the-badge)](https://api.nasa.gov/)
+
+- **Other**:
 [![Cody](https://img.shields.io/badge/Cody-2F80ED?logo=c&logoColor=white&style=for-the-badge)](https://about.sourcegraph.com/cody)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white&style=for-the-badge)](https://github.com/)
 
 ## Getting Started
 
