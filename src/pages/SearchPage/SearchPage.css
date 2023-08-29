@@ -1,5 +1,5 @@
 .search-page {
-
+  margin-top: 20vmin;
   width: calc(90% - var(--sidebar-width));
   margin-left: var(--sidebar-width);
 }
@@ -9,7 +9,8 @@
 }
 
 .button {
-
+  background-color: 222225;
+  color: d0d6dc;
   margin: 3vmin 5vmin;
 }
 

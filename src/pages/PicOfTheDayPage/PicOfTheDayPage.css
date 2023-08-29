@@ -1,7 +1,9 @@
 .content {
-  padding: 2rem;
+  margin-top: 6vmin;
+  padding: 3rem;
   width: calc(90% - var(--sidebar-width));
   margin-left: var(--sidebar-width);
+  padding-bottom: 4vmin;
 }
 
 

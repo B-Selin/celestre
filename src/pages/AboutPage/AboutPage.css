@@ -1,8 +1,8 @@
 .about-container {
   max-width: 90%;
   margin-left: var(--sidebar-width);
-  margin: 5vmin auto;
-  padding: 2vmin;
+  margin: 2vmin auto;
+  padding: 1vmin;
 }
 
 
