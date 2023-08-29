@@ -2,7 +2,9 @@
 
 Celestre is a web application designed for astronomy enthusiasts to connect Nasa images library and learn more about the wonders of the night sky, and to share their stargazing observations with the community. Users can create entries with details about their observations, including their thoughts. 
 
-![Celestre Landing Page](/path/to/screenshot.png)
+<img src="/src/assets/APOD.png" alt="Celestre Landing Page" width="300">
+<img src="/src/assets/Search.png" alt="Search Display Page" width="300">
+<img src="/src/assets/Dashboard.png" alt="Dashboard Page" width="300">
 
 ## Technologies Used
 
