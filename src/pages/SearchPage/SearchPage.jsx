@@ -18,15 +18,17 @@ export default function SearchPage() {
   // State for any error messages
   const [errorMessage, setErrorMessage] = useState('');
 
+
   async function handleSearchSubmit(event) {
     event.preventDefault();
     // Log statement for debugging
-    console.log('Trying to fetch search results...');
+    console.log('Trying to fetch search results for...');
 
     try {
 
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}`);
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}&media_type=image`);
       console.log('API Response:', response.data.collection.items);
+
       // Update search results state
       setSearchResults(response.data.collection.items);
     } catch (error) {
@@ -37,7 +39,7 @@ export default function SearchPage() {
 
     // Lets add a nice little error message in case the search results with nothing
     if (searchResults.length === 0) {
-      setErrorMessage(`It doesn't look like ${searchQuery} exist in the universe... or maybe just a typo. How about trying a different keyword?`);
+      setErrorMessage(`It looks like ${searchQuery} does not exist in the universe... or maybe just a typo. How about trying a different keyword?`);
 
     }
   }

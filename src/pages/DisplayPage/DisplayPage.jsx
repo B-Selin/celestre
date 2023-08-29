@@ -16,8 +16,6 @@ export default function DisplayPage(props) {
   const searchResults = location.state || [];
   // State to store selected image for modal
   const [selectedImage, setSelectedImage] = useState(null);
-  // State to track current page for pagination
-  const [currentPage, setCurrentPage] = useState(1);
 
 
   // Open modal with selected image
@@ -37,12 +35,17 @@ export default function DisplayPage(props) {
     <div className="photos-grid">
       {searchResults.length > 0 ? (
         searchResults.map(result => (
+
           <div key={result.data[0].nasa_id} className="photo-card">
+
             <div className="image-link" onClick={() => openDetailsModal(result)}>
               <img src={result.links[0].href} alt={result.data[0].title} />
               <div className="overlay"><span>{result.data[0].title}</span></div>
             </div>
+
           </div>
+
+
         ))
       ) : (
         <p>No results found.</p>
@@ -51,7 +54,6 @@ export default function DisplayPage(props) {
       {selectedImage && (
         <CSSTransition
           in={selectedImage}
-          timeout={300}
           classNames="modal"
           unmountOnExit
         >
@@ -72,6 +74,8 @@ export default function DisplayPage(props) {
           </div>
         </CSSTransition>
       )}
+
+
     </div>
   );
 }
