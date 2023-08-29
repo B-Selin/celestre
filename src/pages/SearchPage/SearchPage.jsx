@@ -26,7 +26,7 @@ export default function SearchPage() {
 
     try {
 
-      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}&media_type=image`);
+      const response = await axios.get(`https://images-api.nasa.gov/search?q=${searchQuery}&media_type=image&page_size=300`);
       console.log('API Response:', response.data.collection.items);
 
       // Update search results state
