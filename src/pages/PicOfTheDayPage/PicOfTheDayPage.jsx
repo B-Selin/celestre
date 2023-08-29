@@ -22,7 +22,7 @@ export default function PicOfTheDayPage() {
 
   return (
     <div className="content">
-      <h1>Astronomy Picture Of The Day</h1>
+      <h2>Astronomy Picture Of The Day</h2>
       {picture && (
         <div>
           <div className="picture-container">

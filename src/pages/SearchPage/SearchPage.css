@@ -8,6 +8,10 @@
   width: 60vmin;
 }
 
+.button {
+
+  margin: 3vmin 5vmin;
+}
 
 /* Sidebar width variable */
 :root {

@@ -4,7 +4,10 @@
   margin-left: var(--sidebar-width);
 }
 
+.button {
 
+  margin: 3vmin 5vmin;
+}
 
 /* Sidebar width variable */
 :root {

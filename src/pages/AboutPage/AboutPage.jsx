@@ -5,7 +5,7 @@ import './AboutPage.css';
 export default function AboutPage() {
   return (
     <div className="about-container">
-      <h1>About Celestre</h1>
+      <h2>About Celestre</h2>
       <div className="about-content">
         <p>
           Welcome to Celestre, your gateway to the mesmerizing wonders of the universe! 🚀<br />

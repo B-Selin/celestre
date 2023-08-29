@@ -67,7 +67,7 @@ export default function Dashboard({ user }) {
   return (
     <main>
       <div className="dashboard-container">
-        <h2>Welcome {user.name}</h2>
+        <h2>Welcome back, {user.name}!</h2>
 
 
         {/* Stargazing entry form */}
