@@ -58,12 +58,7 @@ export default function SearchPage() {
         <button className='button' type="submit">Search</button>
       </form>
 
-      {/* create a random search suggestion link if no query */}
-      <button className='button'
-        onClick={() => window.open("https://www.youtube.com/shorts/1Ejyxg-sN5Y?feature=share", "_blank")}
-      >
-        Don't know what to search? Try a random suggestion:
-      </button>
+
 
       {/* Navigate to DisplayPage after fetching and setting search results */}
       {searchResults.length > 0 && <Navigate
